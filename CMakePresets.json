@@ -1,0 +1,81 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "dev",
+      "displayName": "Development (Debug)",
+      "description": "Debug build with warnings and tests enabled",
+      "binaryDir": "${sourceDir}/build/dev",
+      "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "BROWSER_BUILD_TESTS": "ON",
+        "BROWSER_BUILD_BENCHMARKS": "ON",
+        "BROWSER_WARNINGS_AS_ERRORS": "OFF"
+      }
+    },
+    {
+      "name": "release",
+      "displayName": "Release",
+      "description": "Optimized release build",
+      "binaryDir": "${sourceDir}/build/release",
+      "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "BROWSER_BUILD_TESTS": "ON",
+        "BROWSER_BUILD_BENCHMARKS": "ON",
+        "BROWSER_WARNINGS_AS_ERRORS": "OFF"
+      }
+    },
+    {
+      "name": "sanitizers",
+      "displayName": "Debug with ASan + UBSan",
+      "description": "Debug build with AddressSanitizer and UndefinedBehaviorSanitizer",
+      "binaryDir": "${sourceDir}/build/sanitizers",
+      "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "BROWSER_BUILD_TESTS": "ON",
+        "BROWSER_ENABLE_ASAN": "ON",
+        "BROWSER_ENABLE_UBSAN": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "dev",
+      "configurePreset": "dev"
+    },
+    {
+      "name": "release",
+      "configurePreset": "release"
+    },
+    {
+      "name": "sanitizers",
+      "configurePreset": "sanitizers"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "dev",
+      "configurePreset": "dev",
+      "output": {
+        "outputOnFailure": true
+      }
+    },
+    {
+      "name": "release",
+      "configurePreset": "release",
+      "output": {
+        "outputOnFailure": true
+      }
+    }
+  ]
+}
+

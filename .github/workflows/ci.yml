@@ -1,0 +1,81 @@
+name: Browser Engine CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    name: Build & Test (GCC & Clang)
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+        build_type: [Release, Debug]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libcurl4-openssl-dev libfreetype6-dev libsdl3-dev
+
+      - name: Configure CMake
+        env:
+          CC: ${{ matrix.compiler == 'gcc' && 'gcc-14' || 'clang-18' }}
+          CXX: ${{ matrix.compiler == 'gcc' && 'g++-14' || 'clang++-18' }}
+        run: |
+          cmake -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} \
+            -DBROWSER_BUILD_TESTS=ON \
+            -DBROWSER_BUILD_BENCHMARKS=ON \
+            -DBROWSER_WARNINGS_AS_ERRORS=ON
+
+      - name: Build All Targets
+        run: cmake --build build --parallel
+
+      - name: Run Unit Tests
+        run: ./build/browser_tests
+
+      - name: Run Pipeline Benchmarks
+        run: ./build/browser_benchmarks
+
+      - name: Test Server Health
+        run: |
+          ./build/browser_server -p 8999 &
+          SERVER_PID=$!
+          sleep 2
+          curl -f http://127.0.0.1:8999/health || (kill $SERVER_PID && exit 1)
+          kill $SERVER_PID
+
+  sanitizers:
+    name: Sanitizers (ASan & UBSan)
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build libcurl4-openssl-dev libfreetype6-dev libsdl3-dev
+
+      - name: Configure with ASan & UBSan
+        run: |
+          cmake -B build-san -G Ninja \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DBROWSER_ENABLE_ASAN=ON \
+            -DBROWSER_ENABLE_UBSAN=ON \
+            -DBROWSER_BUILD_TESTS=ON
+
+      - name: Build with Sanitizers
+        run: cmake --build build-san --parallel
+
+      - name: Run Sanitized Unit Tests
+        run: ./build-san/browser_tests
+

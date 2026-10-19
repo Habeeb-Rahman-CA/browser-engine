@@ -1,0 +1,71 @@
+# Prerequisites & Compiled Object files
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+
+# Executables
+bin/
+browser_shell
+browser_tests
+browser_benchmarks
+browser_server
+*.exe
+*.out
+*.app
+
+# Build directories & CMake output
+build/
+build-*/
+cmake-build-*/
+out/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+CMakeUserPresets.json
+
+# Clang / Tooling caches
+.cache/
+.clangd/
+
+# IDE & Editor artifacts
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.#*
+
+# Sanitizer & Crash logs
+core
+core.*
+vgcore.*
+*.dSYM/
+*.log
+
+# Coverage & Profiling
+*.gcda
+*.gcno
+*.gcov
+coverage/
+perf.data*
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Generated screenshots / debug outputs
+screenshots/
+output.png
+*.dump
+scratch/

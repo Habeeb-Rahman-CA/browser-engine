@@ -1,0 +1,75 @@
+body {
+    background-color: #faf8f5;
+    color: #4a443d;
+    font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    margin: 0;
+    padding: 30px;
+}
+
+.container {
+    width: 580px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #e8e3d8;
+    border-radius: 20px;
+    padding: 32px;
+}
+
+.pill-badge {
+    display: inline-block;
+    background-color: #edf2f9;
+    color: #5c729c;
+    border-radius: 12px;
+    padding: 4px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+h1 {
+    color: #38332d;
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 24px;
+}
+
+p.lead {
+    color: #7c756c;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.card {
+    background-color: #f8f6fc;
+    border: 1px solid #eae3f4;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 18px;
+}
+
+.card-title {
+    color: #5f527c;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.soft-card {
+    background-color: #f3f7f4;
+    border: 1px solid #daebd8;
+    border-radius: 16px;
+    color: #486851;
+    padding: 20px;
+    margin-bottom: 18px;
+}
+
+.btn-pill {
+    display: inline-block;
+    background-color: #f3efe6;
+    border: 1px solid #e0d9cb;
+    border-radius: 22px;
+    padding: 10px 22px;
+    color: #4a443d;
+    font-weight: 700;
+    text-align: center;
+}

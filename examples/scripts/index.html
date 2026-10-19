@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive JavaScript Demo</title>
+    <style>
+        body { font-family: ui-sans-serif, system-ui, sans-serif; background-color: #faf8f5; color: #48433e; margin: 0; padding: 30px; }
+        .box { width: 520px; margin: 30px auto; background-color: #ffffff; border: 1px solid #e8e3d8; border-radius: 20px; padding: 32px; }
+        .tag { display: inline-block; background-color: #f7ede8; color: #a45a47; border-radius: 12px; padding: 4px 12px; font-size: 13px; font-weight: 700; margin-bottom: 12px; }
+        h1 { color: #38332d; font-size: 24px; margin: 6px 0 12px 0; }
+        .lead { color: #7c756c; font-size: 15px; line-height: 1.5; margin-bottom: 20px; }
+        .counter-pill { display: block; background-color: #f2f7f4; border: 1px solid #daebd8; border-radius: 16px; padding: 14px 20px; font-size: 20px; font-weight: 700; color: #446b4e; margin-bottom: 20px; text-align: center; }
+        .btn { display: block; background-color: #edf2fa; color: #4b6699; border: 1px solid #cad8ef; border-radius: 24px; padding: 12px 28px; width: 220px; margin: 0 auto; text-align: center; font-weight: 700; }
+        .info { color: #8e877d; font-size: 14px; margin-top: 20px; text-align: center; }
+        .home-link { display: block; margin-top: 24px; text-align: center; }
+        .home-link a { color: #7c756c; font-size: 14px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span class="tag">Reactive Engine</span>
+        <h1>Interactive Script Demo</h1>
+        <p class="lead">Click the rounded pill button to trigger dynamic script execution, DOM mutation, and layout reflow.</p>
+
+        <div id="counter" class="counter-pill">Clicks: 0</div>
+        <div id="click-btn" class="btn">Click to Increment</div>
+
+        <p id="status-text" class="info">Ready for your input...</p>
+
+        <div class="home-link"><a href="../basic/index.html">&larr; Back to Basic Demo</a></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

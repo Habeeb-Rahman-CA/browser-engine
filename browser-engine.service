@@ -1,0 +1,23 @@
+[Unit]
+Description=Educational Browser Engine Web Server
+After=network.target
+
+[Service]
+Type=simple
+User=browseruser
+Group=browseruser
+WorkingDirectory=/opt/browser-engine
+ExecStart=/opt/browser-engine/bin/browser_server --port 8080 --bind 0.0.0.0
+Restart=always
+RestartSec=5s
+LimitNOFILE=65536
+
+# Security sandbox
+ProtectSystem=strict
+ProtectHome=true
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
